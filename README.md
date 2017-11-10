@@ -49,3 +49,4 @@ Should add some tipical 'shit happens' examples here in future
 ## Files description(respectively to __extensions/woocommerce/__)
 	- __main.php__ - main "wrapper" class.
 	- __assets\css\styles.css__ - styles.
+
