@@ -2,9 +2,7 @@
 Basis for Wordpress theme extension, adds Woocommerce plugin support to any Wordpress theme.
 
 __Notice!__
-
-__This package is not "ready from the box". Thus you will need to perform some edits, before it works.
-	I recommend to add all changes to child-theme.__
+<br><em>This package is not "ready from the box". Thus you will need to perform some edits, before it start work.<br>I recommend to apply all changes to child-theme.</em>
 
 ## Edits to perform:
 
@@ -53,7 +51,8 @@ Should add some tipical 'shit happens' examples here in future
 * __assets\js\scripts.js__ - contains package __Java Script__ modules.
 * __inc\class-tgm-plugin-activation.php__ - [TGM-Plugin-Activation](http://tgmpluginactivation.com/) third party __PHP__- script used for automated _WordPress_ plugins instalation/activation.
 * __templates\multilingual-menu.php__ - Template part. In case of [__WPML__](https://wpml.org/) plugin usage. Should render currency switcher and language switcher.
-* __templates\shop-nav-menu.php__ - Renders 'Shop menu', if one attached to theme location. _Notice: __Renders only 1'st level!___
+* __templates\shop-nav-menu.php__ - Renders 'Shop menu', if one attached to theme location.
+	<br>_Notice!: __Renders only 1'st level of menu!___
 * __templates\shopping-cart-link.php__ - Sopping Cart Navbar.
 * __templates\template-shop.php__ - Static page template.
 * __languages\en.pot__ - Translation asset (_untested_).
