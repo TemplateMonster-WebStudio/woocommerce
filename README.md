@@ -3,10 +3,10 @@ Wordpress theme extension base, to add Woocommerce support to the theme.
 
 __Notice!__
 
-_This package is not "ready from the box".
-Thus you will need to perform some file edits._
-
-_I recommend to add all changes to child-theme._
+	_This package is not "ready from the box".
+	Thus you will need to perform some file edits._
+		
+	_I recommend to add all changes to child-theme._
 
 ## Edits to perform:
 + In _functions.php_ include base wrapper class.
@@ -46,6 +46,6 @@ _I recommend to add all changes to child-theme._
 ## Check for bugs and gliches
 Should add some tipical 'shit happens' examples here in future
 
-## Files description(respectively to _extensions/woocommerce/_)
-	- _main.php_ - main "wrapper" class.
+## Files description(respectively to _extensions/woocommerce/_
 	- _assets\css\styles.css_ - styles.
+
