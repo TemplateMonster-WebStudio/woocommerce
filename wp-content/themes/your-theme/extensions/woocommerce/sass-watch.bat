@@ -1,0 +1,1 @@
+@node-sass -w -r -o assets/css/ --output-style expanded --line-feed lf --source-map true --source-map-contents assets/scss/
