@@ -49,7 +49,7 @@ __Notice!__
 + Duplicate __header.php__ and __footer.php__ from original theme and rename them to __header-shop.php__ and __footer-shop.php__. You already have __sidebar-shop.php__ included.
 	You may omit this step if you don't need the shop header and footer to differ from original site header and footer. Although you will still need copies of header and footer to integrate 'Shop menu'(see further).
 
-+ Open your __index.php__, from original theme. Replace code inside __extensions/woocommerce/templates/template-shop.php__ with "page content code"(typically all between __get_header()__ and __get_footer()__).
++ Open your __index.php__, from original theme. Copy "page content code"(typically all between __get_header()__ and __get_footer()__). Replace code inside __extensions/woocommerce/templates/template-shop.php__ with copied "page content code".
 	
     If __get_sidebar()__ is present inside "page content code" - replace it with __get_sidebar('shop')__.
 	Alternatively you can replace __template-shop.php__ with renamed __index.php__. In this case, replace all occurrences of __get_header__, __get_footer__ and __get_sidebar__ calls whith their "shop" versions.
