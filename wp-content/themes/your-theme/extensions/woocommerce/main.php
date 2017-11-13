@@ -189,11 +189,16 @@ class Main{
 	}
 
 	public function enqueue_scripts(){
-
-		$depends = apply_filters( self::PREFIX . '-styles', array(
-			wp_get_theme()->stylesheet . '-style',
-		) );
-
+		
+		$depends = array();
+		
+		if( is_child_theme() ){
+			 $depends = array(
+				wp_get_theme()->stylesheet . '-style',
+			);
+		}
+		$depends = apply_filters( self::PREFIX . '-styles', $depends );
+		
 		wp_register_style(
 			self::PREFIX . '-styles',
 			self::_dir( 'styles.css', 'css' ),
