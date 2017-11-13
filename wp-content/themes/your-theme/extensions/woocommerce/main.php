@@ -214,25 +214,31 @@ class Main{
 
 		return array_merge( $classes, array( 'woocommerce' ) );
 	}
-
+	
+	/**
+	* Hooked to woocommerce_before_main_content, 10
+	*/
 	public function output_content_wrapper(){
 		?>
-		<div class="wrapper main-wrapper clear">
-			<div id="primary" class="content-area">
-				<main id="main" class="site-main" role="main">
+		<!-- YOUR THEME's CONTENT WRAPPERS BEFORE MAIN CONTENT -->
 		<?php
 	}
 
-	public function output_content_wrapper_end(){
+	/**
+	* Hooked to woocommerce_before_main_content, 10
+	*/
+	public function woocommerce_after_main_content(){
 		?>
-				</main><!-- #main -->
-			</div><!-- #primary -->
+		<!-- YOUR THEME's CONTENT WRAPPERS BEFORE AFTER CONTENT -->
 		<?php
 	}
 
+	/**
+	* Hooked to woocommerce_sidebar, 11
+	*/
 	public function after_sidebar_wrapper_close(){
 		?>
-		</div><!-- .main-wrapper -->
+		<!-- YOUR THEME's SIDEBAR WRAPPER END -->
 		<?php	
 	}
 
