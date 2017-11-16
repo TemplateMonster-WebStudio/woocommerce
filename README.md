@@ -26,11 +26,11 @@ __Notice!__
 	* __Wrapper end__
 		```php
 		/**
-		* Hooked to woocommerce_before_main_content, 10
+		* Hooked to woocommerce_after_main_content, 10
 		*/
-		public function woocommerce_after_main_content(){
+		public function output_content_wrapper_end(){
 			?>
-			<!-- YOUR THEME's CONTENT WRAPPERS BEFORE AFTER CONTENT -->
+			<!-- YOUR THEME's CONTENT WRAPPERS AFTER CONTENT -->
 			<?php
 		}
 		```
