@@ -20,7 +20,7 @@
 	<a class="navbar-toggle" data-toggle="cart"><?php echo $button_text ?></a>
 	<div class="cart-content-wrapper navbar-content widget woocommerce widget_shopping_cart" data-panel="cart">
 		<div class="widget_shopping_cart_content">
-			<?php wc_get_template( 'cart/mini-cart.php' ); ?>
+			<?php woocommerce_mini_cart(); ?>
 		</div>
 	</div>
 </div>
