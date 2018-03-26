@@ -48,6 +48,8 @@ class Main{
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 
 		/** Quering assets */
+		add_filter( 'woocommerce_enqueue_styles', array( $this, 'woocommerce_enqueue_styles' ) );
+		
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		/** Updating templates include quene */
@@ -213,6 +215,20 @@ class Main{
 
 		wp_enqueue_style( self::PREFIX . '-styles' );
 		wp_enqueue_script( self::PREFIX . '-scripts' );
+	}
+
+	/**
+	* Applying Small Screen styles only on Checkout and Cart pages
+	*/
+	public function woocommerce_enqueue_styles( $styles=array() ){
+
+		if( !( is_cart() || is_checkout() )
+			&& array_key_exists( 'woocommerce-smallscreen', $styles ) ){
+
+			unset( $styles['woocommerce-smallscreen'] );
+		}
+
+		return $styles;
 	}
 
 	public function body_class( $classes, $class ){
