@@ -205,7 +205,7 @@ WooLayoutSwitch.prototype = {
 }
 
 var opts = {};
-/** Make sure that the related products section follows the same layout rules */
+/** Make sure that the related products section follows the same layout rules as an archive(Shop) page does */
 if( document.body.classList.contains( 'single-product' ) ){
 	opts = {
 		switchPoints : {
@@ -221,3 +221,7 @@ if( document.body.classList.contains( 'single-product' ) ){
 }
 var wooLayoutSwitch = new WooLayoutSwitch( opts );
 window.dispatchEvent( new Event( 'resize' ) );
+<<<<<<< HEAD
+=======
+*/
+>>>>>>> 777941686207a69cdaf5efd812d08fdb8176df7c
