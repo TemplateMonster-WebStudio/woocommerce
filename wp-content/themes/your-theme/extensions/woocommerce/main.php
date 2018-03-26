@@ -222,8 +222,7 @@ class Main{
 	*/
 	public function woocommerce_enqueue_styles( $styles=array() ){
 
-		if( !( is_cart() || is_checkout() )
-			&& array_key_exists( 'woocommerce-smallscreen', $styles ) ){
+		if( array_key_exists( 'woocommerce-smallscreen', $styles ) ){
 
 			unset( $styles['woocommerce-smallscreen'] );
 		}
