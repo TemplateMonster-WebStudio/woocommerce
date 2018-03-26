@@ -13,28 +13,6 @@
 				$plus = !!$('.tm-qty-plus', $this)[0]? $('.tm-qty-plus', $this):$('<span/>', { 'class':'tm-qty-plus'}),
 				$minus = !!$('.tm-qty-minus', $this)[0]? $('.tm-qty-minus', $this):$('<span/>', { 'class':'tm-qty-minus'});
 
-			function clickCallback(e){
-				var $this = $(this),
-					$min = parseInt($this.attr( 'min' )),
-					$max = parseInt($this.attr( 'max' )),
-					$current = parseInt($this.val());
-
-				$min = isNaN($min)? 1: $min;
-				$max = isNaN($max)? '': $max;
-
-				if( $(e.currentTarget).hasClass('tm-qty-minus') ){
-					$this.val( Math.max( $current - 1, $min ) );
-				}else if( $max != '' ){
-					$this.val( Math.min( $current + 1, $max ) );
-				}else{
-					$this.val( $current + 1 );
-				}
-
-				$this.trigger('change');
-
-				return false;
-			}
-
 			$plus.off('click');
 			$minus.off('click');
 
@@ -44,6 +22,29 @@
 			$this.append($plus);
 			$this.append($minus);
 		});
+	}
+
+	
+	function clickCallback(e){
+		var $this = $(this),
+			$min = parseInt($this.attr( 'min' )),
+			$max = parseInt($this.attr( 'max' )),
+			$current = parseInt($this.val());
+
+		$min = isNaN($min)? 1: $min;
+		$max = isNaN($max)? '': $max;
+
+		if( $(e.currentTarget).hasClass('tm-qty-minus') ){
+			$this.val( Math.max( $current - 1, $min ) );
+		}else if( $max != '' ){
+			$this.val( Math.min( $current + 1, $max ) );
+		}else{
+			$this.val( $current + 1 );
+		}
+
+		$this.trigger('change');
+
+		return false;
 	}
 
 	$(doc).ready(setupQuantityControls);
@@ -105,119 +106,131 @@
 
 
 /** Plugin to switch layout classes depending on window resolution */
-function WooLayoutSwitch( options ){
-	var options = options||{};
+!(function($, doc, win){
 
-	this.settings = this.extend( this.defaults, options );
-	this.elem = document.querySelector( this.settings.selector );
+	function WooLayoutSwitch( options ){
+		var options = options||{};
 
-	if( this.elem ){
-		this.init();
+		this.settings = this.extend( this.defaults, options );
+		this.elem = doc.querySelector( this.settings.selector );
+
+		if( this.elem ){
+			this.init();
+		}
 	}
-}
 
-WooLayoutSwitch.prototype = {
-	name: 'WooLayoutSwitch',
-	elem: null,
-	settings: {},
-	defaults: {
-		switchPoints : {
-			0:{ items:1 },
-			480:{ items:2 },
-			992:{ items:3 },
-			1200:{ items:4 },
+	WooLayoutSwitch.prototype = {
+		name: 'WooLayoutSwitch',
+		elem: null,
+		settings: {},
+		defaults: {
+			switchPoints : {
+				0:{ items:1 },
+				480:{ items:2 },
+				992:{ items:3 },
+				1200:{ items:4 },
+			},
+			timeout: 50,
+			selector: 'div.woocommerce[class*="columns-"]',
+			prefix: 'columns-',
 		},
-		timeout: 50,
-		selector: 'div.woocommerce[class*="columns-"]',
-		prefix: 'columns-',
-	},
-	extend: function(...rest) {
-		var result = {};
 
-		for( var index in rest ){
-			var props = rest[index];
+		extend: function(...rest) {
+			var result = {};
 
-			for ( var prop in props ){
-				result[prop] = props[prop];
-			}
-		}
+			for( var index in rest ){
+				var props = rest[index];
 
-		return result;
-	},
-	addListeners: function(){
-		window.addEventListener( 'resize', this.onResize.bind(this) );
-	},
-	removeListeners: function(){
-		window.removeEventListener( 'resize', this.onResize.bind(this) );
-	},
-	onResize: function( e ){
-		if( this.timeoutID ){
-			clearTimeout( this.timeoutID );
-		}
-		this.timeoutID = setTimeout( this.doSwitchLayout.bind( this, e ), this.settings.timeout );
-	},
-	doSwitchLayout: function( e ){
-		var self = this,
-		winw = window.outerWidth,
-		switchPoint;
-
-		for( var resolution in this.settings.switchPoints ){
-			if( winw >= parseInt( resolution ) ){
-				switchPoint = this.settings.switchPoints[resolution];
-			}
-		}
-
-		if( 'items' in switchPoint ){
-			
-			var classes = self.elem.classList;
-
-			classes.forEach( function( _class, index ){
-				if ( _class.search( RegExp(self.settings.prefix) ) >= 0 ){
-					var new_class = self.settings.prefix + switchPoint.items;
-					classes.replace( _class, new_class );
+				for ( var prop in props ){
+					result[prop] = props[prop];
 				}
-			} );
+			}
 
-			self.elem.querySelectorAll( '.last' )
-			.forEach( function( el, index ){
-				el.classList.remove( 'last' );
-			});
-			self.elem.querySelectorAll( '.first' )
-			.forEach( function( el, index ){
-				el.classList.remove( 'first' );
-			});
-
-			self.elem.querySelectorAll( 'li.product:nth-child(' + switchPoint.items + 'n)' )
-			.forEach( function(el, index){
-				el.classList.add( 'last' );
-			});
-			
-			self.elem.querySelectorAll( 'li.product:nth-child(' + switchPoint.items + 'n+1)' )
-			.forEach( function(el, index){
-				el.classList.add( 'first' );
-			});
-		}
-	},
-	init: function() {
-		this.removeListeners();
-		this.addListeners();
-	},
-}
-
-var opts = {};
-/** Make sure that the related products section follows the same layout rules */
-if( document.body.classList.contains( 'single-product' ) ){
-	opts = {
-		switchPoints : {
-			0:{ items:1 },
-			480:{ items:2 },
-			992:{ items:4 },
-			1200:{ items:5 },
+			return result;
 		},
-		timeout: 50,
-		selector: 'div.woocommerce[class*="columns-"]',
-		prefix: 'columns-',
+
+		addListeners: function(){
+			win.addEventListener( 'resize', this.onResize.bind(this) );
+		},
+
+		removeListeners: function(){
+			win.removeEventListener( 'resize', this.onResize.bind(this) );
+		},
+
+		onResize: function( e ){
+			if( this.timeoutID ){
+				clearTimeout( this.timeoutID );
+			}
+			this.timeoutID = setTimeout( this.doSwitchLayout.bind( this, e ), this.settings.timeout );
+		},
+
+		doSwitchLayout: function( e ){
+			var self = this,
+			winw = win.innerWidth,
+			switchPoint;
+
+			for( var resolution in this.settings.switchPoints ){
+				if( winw >= parseInt( resolution ) ){
+					switchPoint = this.settings.switchPoints[resolution];
+				}
+			}
+
+			if( 'items' in switchPoint ){
+				
+				var classes = self.elem.classList;
+
+				classes.forEach( function( _class, index ){
+					if ( _class.search( RegExp(self.settings.prefix) ) >= 0 ){
+						var new_class = self.settings.prefix + switchPoint.items;
+						classes.replace( _class, new_class );
+					}
+				} );
+
+				self.elem.querySelectorAll( '.last' )
+				.forEach( function( el, index ){
+					el.classList.remove( 'last' );
+				});
+				self.elem.querySelectorAll( '.first' )
+				.forEach( function( el, index ){
+					el.classList.remove( 'first' );
+				});
+
+				self.elem.querySelectorAll( 'li.product:nth-child(' + switchPoint.items + 'n)' )
+				.forEach( function(el, index){
+					el.classList.add( 'last' );
+				});
+				
+				self.elem.querySelectorAll( 'li.product:nth-child(' + switchPoint.items + 'n+1)' )
+				.forEach( function(el, index){
+					el.classList.add( 'first' );
+				});
+			}
+		},
+
+		init: function() {
+			this.removeListeners();
+			this.addListeners();
+		},
 	}
-}
-var wooLayoutSwitch = new WooLayoutSwitch( opts );
-window.dispatchEvent( new Event( 'resize' ) );
+
+	$(doc).ready(function($){
+		var opts = {};
+		if( doc.body.classList.contains( 'single-product' ) ){
+			/** Override Related products layout columns settings if required  */
+			opts = {
+				switchPoints : {
+					0:{ items:1 },
+					480:{ items:2 },
+					992:{ items:3 },
+					1200:{ items:4 },
+				},
+				timeout: 50,
+				selector: 'div.woocommerce[class*="columns-"]',
+				prefix: 'columns-',
+			}
+		}
+
+		win.wooLayoutSwitch = new WooLayoutSwitch( opts );
+		win.dispatchEvent( new Event( 'resize' ) );
+	});
+})(jQuery, document, window);
