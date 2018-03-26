@@ -1,16 +1,17 @@
 'use strict';
 
-/** Quantity field wrapper */
-;(function($, doc, window){
 
-	$(doc).ready(function(){
+/** Quantity field wrapper */
+!(function($, doc, window){
+
+	function setupQuantityControls(){
 		var $quantity = $('form .quantity');
 
-		$quantity.each( function(){
+		$quantity.each(function(){
 			var $this = $(this),
 				$input = $('.input-text.qty', $this),
-				$plus = $('<span/>', { 'class':'tm-qty-plus'}),
-				$minus = $('<span/>', { 'class':'tm-qty-minus'});
+				$plus = !!$('.tm-qty-plus', $this)[0]? $('.tm-qty-plus', $this):$('<span/>', { 'class':'tm-qty-plus'}),
+				$minus = !!$('.tm-qty-minus', $this)[0]? $('.tm-qty-minus', $this):$('<span/>', { 'class':'tm-qty-minus'});
 
 			function clickCallback(e){
 				var $this = $(this),
@@ -34,14 +35,21 @@
 				return false;
 			}
 
+			$plus.off('click');
+			$minus.off('click');
+
 			$plus.on('click', $.proxy( clickCallback, $input ));
 			$minus.on('click', $.proxy( clickCallback, $input ));
 
 			$this.append($plus);
 			$this.append($minus);
-		} );
-	});
-})(jQuery, document, window)
+		});
+	}
+
+	$(doc).ready(setupQuantityControls);
+	$(doc).on('wc_fragments_refreshed', 'body', setupQuantityControls);
+})(jQuery, document, window);
+
 
 /** Navbar toggle plugin */
 ;(function($, doc, win) {
