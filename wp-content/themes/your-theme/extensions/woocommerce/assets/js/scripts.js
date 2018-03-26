@@ -105,6 +105,57 @@
 })(jQuery, document, window);
 
 
+/** Mobile shop menu */
+!(function($, doc, win){
+
+	$(doc).ready(function($){
+		var $wrapper = $('.shop-nav'),
+			$toggle = $('button.menu-toggle', $wrapper),
+			$navbar = $('.shop-menu', $wrapper),
+			$switchPoint = 768,
+			resizeTimeoutID;
+
+		function activate(){
+			$wrapper.removeClass('active');
+			$(doc).off('click.shop-nav');
+			$(doc).on('click.shop-nav', toggleCallback.bind($wrapper));
+		}
+
+		function deactivate(){
+			$wrapper.removeClass('active');
+			$(doc).off('click.shop-nav');
+		}
+
+		function toggleCallback(e){
+			var $this = $(this);
+
+			if( $(e.target).is('button.menu-toggle > span') ){
+				$this.toggleClass('active');
+			}else{
+				$this.removeClass('active');
+			}
+		}
+
+		function resizeCallback(e){
+			var $winw = $(win).width();
+			//console.log('resize');
+			if( $winw >= $switchPoint ){
+				deactivate();
+			}else{
+				activate();
+			}
+		}
+
+		function delayedResizeCallback(e){
+			clearTimeout( resizeTimeoutID );
+			resizeTimeoutID = setTimeout( resizeCallback, 250, e );
+		}
+
+		$(win).resize(delayedResizeCallback).resize();
+	});
+})(jQuery, document, window);
+
+
 /** Plugin to switch layout classes depending on window resolution */
 !(function($, doc, win){
 
