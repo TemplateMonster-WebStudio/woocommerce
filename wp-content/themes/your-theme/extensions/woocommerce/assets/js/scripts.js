@@ -52,15 +52,16 @@
 
 
 /** Navbar toggle plugin */
-;(function($, doc, win) {
+!(function($, doc, win) {
 	
-	function setupToggle( target ){
+	function setupToggle( target, commonParent ){
 
 		var _toggle = $(target),
+			_parent = $(commonParent)[0]? $(commonParent): _toggle.parent(),
 			_panel_selector = _toggle.data('toggle'),
 			_panel;
 
-		_panel = $('[data-panel="' + _panel_selector + '"]').eq(0);
+		_panel = $('[data-panel="' + _panel_selector + '"]', _parent).eq(0);
 
 		if( 0 == _panel.length ){
 			return;
@@ -100,7 +101,7 @@
 	$(doc).ready(function(){
 		setToggle('.navbar-toggle');
 	});
-})(jQuery, document, window)
+})(jQuery, document, window);
 
 /**
 *
