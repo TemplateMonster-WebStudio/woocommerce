@@ -49,10 +49,10 @@ __Notice!__
 + Duplicate __header.php__ and __footer.php__ from original theme and rename them to __header-shop.php__ and __footer-shop.php__. You already have __sidebar-shop.php__ included.
 	You may omit this step if you don't need the shop header and footer to differ from original site header and footer. Although you will still need copies of header and footer to integrate 'Shop menu'(see further).
 
-+ Open your __index.php__, from original theme. Copy "page content code"(typically all between __get_header()__ and __get_footer()__). Replace code inside __extensions/woocommerce/templates/template-shop.php__ with copied "page content code".
++ Open your __page.php__(static page template), from original theme. Copy "page content code"(typically all between __get_header()__ and __get_footer()__). Replace code inside __extensions/woocommerce/templates/template-shop.php__ with copied "page content code".
 	
     If __get_sidebar()__ is present inside "page content code" - replace it with __get_sidebar('shop')__.
-	Alternatively you can replace __template-shop.php__ with renamed __index.php__. In this case, replace all occurrences of __get_header__, __get_footer__ and __get_sidebar__ calls whith their "shop" versions.
+	Alternatively you can replace __template-shop.php__ with renamed __page.php__. In this case, replace all occurrences of __get_header__, __get_footer__ and __get_sidebar__ calls whith their "shop" versions.
 	
 	This will provide you with static page template named 'Shop Page Template'. Available for selection in admin section of the site. On 'Edit Page' page, inside 'Page Attributes' meta-box.
 	Main purpose of this template - output 'Shop Sidebar' on desired, non related to shop, pages.
@@ -80,7 +80,8 @@ __Notice!__
 
 ## Check for bugs and gliches
 
-Should add some tipical 'shit happens' examples here in future
++ If you have Cherry3-theme - use [this repository](#)
++ If you have Cherry5-theme - use [this repository](#)
 
 ## Files description(respectively to <em>extensions/woocommerce/</em>)
 
