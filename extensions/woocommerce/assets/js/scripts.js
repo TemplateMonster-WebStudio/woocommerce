@@ -1,5 +1,6 @@
 'use strict';
 
+var woo_wrapper = window.woo_wrapper||{};
 
 /** Quantity field wrapper */
 !(function($, doc, window){
@@ -155,9 +156,15 @@
 	});
 })(jQuery, document, window);
 
-
 /** Plugin to switch layout classes depending on window resolution */
 !(function($, doc, win){
+
+	var layout_settings = woo_wrapper.layout_settings||{
+		0:{ items:1 },
+		480:{ items:2 },
+		992:{ items:3 },
+		1200:{ items:4 },
+	};
 
 	function WooLayoutSwitch( options ){
 		var options = options||{};
@@ -175,12 +182,7 @@
 		elem: null,
 		settings: {},
 		defaults: {
-			switchPoints : {
-				0:{ items:1 },
-				480:{ items:2 },
-				992:{ items:3 },
-				1200:{ items:4 },
-			},
+			switchPoints : layout_settings,
 			timeout: 50,
 			selector: 'div.woocommerce[class*="columns-"]',
 			prefix: 'columns-',
@@ -267,14 +269,9 @@
 	$(doc).ready(function($){
 		var opts = {};
 		if( doc.body.classList.contains( 'single-product' ) ){
-			/** Override Related products layout columns settings if required  */
+			/** Override Related products layout columns settings here, if required  */
 			opts = {
-				switchPoints : {
-					0:{ items:1 },
-					480:{ items:2 },
-					992:{ items:3 },
-					1200:{ items:4 },
-				},
+				switchPoints : layout_settings,
 				timeout: 50,
 				selector: 'div.woocommerce[class*="columns-"]',
 				prefix: 'columns-',

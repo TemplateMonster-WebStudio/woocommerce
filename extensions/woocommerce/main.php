@@ -131,10 +131,10 @@ class Main{
 
 		$redirect = home_url( $wp->request );
 
-		$items .= '<li class="menu-item">' . wp_loginout( $redirect, false ) . '</li>';
+		$items .= '<li class="menu-item wp-login-li">' . wp_loginout( $redirect, false ) . '</li>';
 
 		if( ! is_user_logged_in() ){
-			$items .= wp_register( '<li class="menu-item">', '</li>', false );
+			$items .= wp_register( '<li class="menu-item wp-register-li">', '</li>', false );
 		}
 
 		return $items;
@@ -212,6 +212,17 @@ class Main{
 			self::PREFIX . '-scripts',
 			self::_dir( 'scripts.js', 'js' ),
 			$depends );
+
+		$columns = (int) apply_filters( 'loop_shop_columns', 4 );
+		$vars = array(
+			'layout_settings' => array(
+				'0'    => array( 'items' => 1 ),
+				'480'  => array( 'items' => 2 ),
+				'992'  => array( 'items' => min( 3, $columns ) ),
+				'1200'  => array( 'items' => $columns ),
+			),
+		);
+		wp_localize_script( self::PREFIX . '-scripts', 'woo_wrapper', apply_filters( self::PREFIX . '-js-vars', $vars ) );
 
 		wp_enqueue_style( self::PREFIX . '-styles' );
 		wp_enqueue_script( self::PREFIX . '-scripts' );
