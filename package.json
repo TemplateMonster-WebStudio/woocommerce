@@ -4,7 +4,7 @@
   "description": "Woocommerce integration package",
   "scripts": {
     "sass-compile": "node-sass -o assets/css/ --output-style expanded --line-feed lf --source-map true --source-map-contents assets/scss/",
-    "sass-watch": "node-sass -w -r -o assets/css/ --output-style expanded --line-feed lf --source-map true --source-map-contents assets/scss/",
+    "sass-watch": "node-sass -w -r -o assets/css/ --output-style expanded --line-feed lf --source-map true --source-map-contents assets/scss/"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "theme"
   ],
   "author": "Tolumbas",
-  "license": "ISC",
+  "license": "GNU",
   "bugs": {
     "url": "https://github.com/Tolumba/wp-theme-woocommerce/issues"
   },
