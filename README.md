@@ -2,6 +2,7 @@
 Basis for Wordpress theme extension, adds __Woocommerce__ plugin support to any Wordpress theme.
 
 __Notice!__
+<br><em>Expected you've cloned this into __extensions/__ directory inside your theme directory</em>
 <br><em>This package is not "ready from the box". Thus you will need to perform some edits, before it starts to work properly.<br>I recommend to apply all changes to child-theme.</em>
 
 ## Edits to apply:
