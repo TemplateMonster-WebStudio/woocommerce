@@ -108,6 +108,7 @@ class Main{
 	}
 
 	public function theme_setup(){
+
 		/* Declaring woocommerce support */
 		add_theme_support( 'woocommerce' );
 
@@ -120,7 +121,12 @@ class Main{
 		register_nav_menu( $shop_menu_slug, __( 'Shop menu', 'woo-wrapper' ) );
 		add_filter( "wp_nav_menu_{$shop_menu_slug}_items", array( $this, 'shop_menu_filter' ), 10, 2 );
 
-		if( 'yes' !== get_theme_mod( 'shop_display_breadcrumbs', 'yes' ) ){
+
+		if( (bool) get_theme_mod( 'shop_hide_title', false ) ){
+			add_filter( 'woocommerce_show_page_title', '__return_false', 99 );
+		}
+
+		if( (bool) get_theme_mod( 'shop_hide_breadcrumbs', false ) ){
 			remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 		}
 	}
@@ -141,9 +147,10 @@ class Main{
 	}
 
 	public function customize_register( $wp_customize ){
-		$wp_customize->add_section( 'shop_section', array(
-			'id'=> 'shop_section',
-			'title'=> 'Shop Section',
+		$wp_customize->add_section( 'theme_woo_options', array(
+			'id'=> 'theme_woo_options',
+			'title'=> 'Theme Options',
+			'panel' => 'woocommerce',
 		) );
 
 		$wp_customize->add_setting( 'shop_products_per_page', array(
@@ -152,8 +159,8 @@ class Main{
 			'transport'         => 'refresh',
 		) );
 		$wp_customize->add_control( new \WP_Customize_Control( $wp_customize, 'shop_products_per_page', array(
-			'label'   => esc_html__( 'Products per_page', 'woo-wrapper' ),
-			'section' => 'shop_section',
+			'label'   => esc_html__( 'Products per page', 'woo-wrapper' ),
+			'section' => 'theme_woo_options',
 		) ) );
 
 		$wp_customize->add_setting( 'shop_page_columns', array(
@@ -163,17 +170,26 @@ class Main{
 		) );
 		$wp_customize->add_control( new \WP_Customize_Control( $wp_customize, 'shop_page_columns', array(
 			'label'   => esc_html__( 'Products grid columns', 'woo-wrapper' ),
-			'section' => 'shop_section',
+			'section' => 'theme_woo_options',
 		) ) );
 
-		$wp_customize->add_setting( 'shop_display_breadcrumbs', array(
-			'default'           => 'yes',
-			'sanitize_callback' => 'sanitize_text_field',
+		$wp_customize->add_setting( 'shop_hide_title', array(
+			'default'           => '0',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new \WP_Customize_Control( $wp_customize, 'shop_display_breadcrumbs', array(
-			'label'   => esc_html__( 'Display Breadcrumbs', 'woo-wrapper' ),
-			'section' => 'shop_section',
+		$wp_customize->add_control( new \WP_Customize_Control( $wp_customize, 'shop_hide_title', array(
+			'label'   => esc_html__( 'Hide Title', 'woo-wrapper' ),
+			'section' => 'theme_woo_options',
+			'type' => 'checkbox',
+		) ) );
+
+		$wp_customize->add_setting( 'shop_hide_breadcrumbs', array(
+			'default'           => '0',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new \WP_Customize_Control( $wp_customize, 'shop_hide_breadcrumbs', array(
+			'label'   => esc_html__( 'Hide Breadcrumbs', 'woo-wrapper' ),
+			'section' => 'theme_woo_options',
 			'type' => 'checkbox',
 		) ) );
 	}
