@@ -1,0 +1,24 @@
+{
+  "name": "woo-wrapper",
+  "version": "1.0.0",
+  "description": "Woocommerce integration package",
+  "scripts": {
+    "sass-compile": "node-sass -o assets/css/ --output-style expanded --line-feed lf --source-map true --source-map-contents assets/scss/",
+    "sass-watch": "node-sass -w -r -o assets/css/ --output-style expanded --line-feed lf --source-map true --source-map-contents assets/scss/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tolumba/wp-theme-woocommerce.git"
+  },
+  "keywords": [
+    "Woocommerce",
+    "Wordpress",
+    "theme"
+  ],
+  "author": "Tolumbas",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/Tolumba/wp-theme-woocommerce/issues"
+  },
+  "homepage": "https://github.com/Tolumba/wp-theme-woocommerce#readme"
+}

@@ -974,4 +974,12 @@ body{
 	}
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+@media only screen and ( max-width: 767px ){
 @import "woocommerce-smallscreen"
+}

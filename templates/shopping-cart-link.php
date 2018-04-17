@@ -16,7 +16,7 @@
 
 	$button_text = sprintf( __( '%sCart%s', 'woo-wrapper' ), $text_before, $text_after );
 ?>
-<div class="cart-navbar-wrapper right">
+<div class="cart-navbar-wrapper alignright">
 	<a class="navbar-toggle" data-toggle="cart"><?php echo $button_text ?></a>
 	<div class="cart-content-wrapper navbar-content widget woocommerce widget_shopping_cart" data-panel="cart">
 		<div class="widget_shopping_cart_content">
