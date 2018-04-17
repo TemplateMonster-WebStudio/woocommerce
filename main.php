@@ -20,25 +20,30 @@ class Main{
 		locate_template( self::DIR . 'inc/class-tgm-plugin-activation.php', true, true );
 		add_action( 'tgmpa_register',  array( $this, 'tgmpa_register' ) );
 
+		spl_autoload_register( array( $this, '_loader' ) );
+
 		if( ! function_exists('WC') ){
 			return;
 		}
+
+		$theme_integrator = $this->get_integrator();
 
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper' );
 
 		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' );
 
 		/** Basic Woocommerce support */
-		add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
+		add_action( 'after_setup_theme', array( $this, 'theme_setup' ) , false);
 
 		/** Adding Customizer settings */
 		add_action( 'customize_register', array( $this, 'customize_register' ), 12 );
 
-		add_action( 'woocommerce_before_main_content', array( $this, 'output_content_wrapper' ) );
+		/** Layout Setup */
+		add_action( 'woocommerce_before_main_content', array( $theme_integrator, 'output_content_wrapper_start' ) );
 
-		add_action( 'woocommerce_after_main_content', array( $this, 'output_content_wrapper_end' ) );
+		add_action( 'woocommerce_after_main_content', array( $theme_integrator, 'output_content_wrapper_end' ) );
 
-		add_action( 'woocommerce_sidebar', array( $this, 'after_sidebar_wrapper_close' ), 11 );
+		add_action( 'woocommerce_sidebar', array( $theme_integrator, 'after_sidebar_wrapper_close' ), 11 );
 
 		add_action( 'woocommerce_before_template_part', array( $this, 'loop_shop_wrap_start' ), 10, 4 );
 
@@ -105,6 +110,24 @@ class Main{
 		);
 
 		villagio_tgmpa( $plugins, $config );
+	}
+
+	public function get_integrator(){
+
+		$classname = wp_get_theme()->stylesheet;
+		$classname = __NAMESPACE__ . '\\inc\\' . preg_replace( '/ /', '', ucwords( preg_replace( '/[-_]/', ' ', $classname ) ) ) . 'Integrator';
+
+		try{
+			spl_autoload_call( $classname );
+		} catch( \Exception $e ) {
+			echo $e->getMessage();
+		}
+
+		if( class_exists( $classname ) ){
+			return new $classname;
+		}else{
+			return $this;
+		}
 	}
 
 	public function theme_setup(){
@@ -265,7 +288,7 @@ class Main{
 	/**
 	* Hooked to woocommerce_before_main_content, 10
 	*/
-	public function output_content_wrapper(){
+	public function output_content_wrapper_start(){
 		?>
 		<!-- YOUR THEME's CONTENT WRAPPERS BEFORE MAIN CONTENT -->
 		<?php
@@ -377,6 +400,55 @@ class Main{
 		$fragments['.cart-navbar-wrapper i.count'] = "<i class=\"count\">{$items_count}</i>";
 
 		return $fragments;
+	}
+
+	private final function _loader( $classname ){
+
+		$pattern = '/' . preg_quote( __NAMESPACE__ ) . '/';
+
+		if( !preg_match( $pattern, $classname ) ){
+			return false;
+		}
+
+		$classname = preg_replace( $pattern, '', $classname );
+
+		$pattern = '/\\\/';
+		$namespace_arr = preg_split( $pattern, $classname, -1, PREG_SPLIT_NO_EMPTY );
+
+		$pattern = '/([[:upper:]][^[:upper:]]*)/';
+		$parts = preg_split(
+			$pattern,
+			array_pop( $namespace_arr ),
+			-1,
+			PREG_SPLIT_NO_EMPTY|PREG_SPLIT_DELIM_CAPTURE
+		);
+
+		array_unshift( $parts, 'class' );
+		$name = strtolower( implode( '-', $parts ) . '.php' );
+
+		//array_shift( $namespace_arr );
+		$file = __DIR__ . DIRECTORY_SEPARATOR . $name;
+		
+		//var_dump($file);
+
+		if( file_exists( $file ) ) {
+
+			require_once $file;
+			return true;
+		} else if( count( $namespace_arr ) ) {
+
+			$subdirs = implode( DIRECTORY_SEPARATOR, $namespace_arr );
+			$file = __DIR__ . DIRECTORY_SEPARATOR . $subdirs . DIRECTORY_SEPARATOR . $name;
+
+			//var_dump($file);
+
+			if( file_exists( $file ) ){
+				require_once $file;
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public static function instance(){
