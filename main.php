@@ -8,6 +8,7 @@ namespace extensions\woocommerce;
 class Main{
 
 	private static $_instance;
+	private $_integrator;
 
 	const PREFIX = 'woo-wrapper';
 	const DIR = 'extensions/woocommerce/';
@@ -26,8 +27,6 @@ class Main{
 			return;
 		}
 
-		$theme_integrator = $this->get_integrator();
-
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper' );
 
 		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' );
@@ -39,11 +38,11 @@ class Main{
 		add_action( 'customize_register', array( $this, 'customize_register' ), 12 );
 
 		/** Layout Setup */
-		add_action( 'woocommerce_before_main_content', array( $theme_integrator, 'output_content_wrapper_start' ) );
+		add_action( 'woocommerce_before_main_content', array( $this->get_integrator(), 'output_content_wrapper_start' ) );
 
-		add_action( 'woocommerce_after_main_content', array( $theme_integrator, 'output_content_wrapper_end' ) );
+		add_action( 'woocommerce_after_main_content', array( $this->get_integrator(), 'output_content_wrapper_end' ) );
 
-		add_action( 'woocommerce_sidebar', array( $theme_integrator, 'after_sidebar_wrapper_close' ), 11 );
+		add_action( 'woocommerce_sidebar', array( $this->get_integrator(), 'after_sidebar_wrapper_close' ), 11 );
 
 		add_action( 'woocommerce_before_template_part', array( $this, 'loop_shop_wrap_start' ), 10, 4 );
 
@@ -114,6 +113,10 @@ class Main{
 
 	public function get_integrator(){
 
+		if( null != $this->$_integrator ){
+			return $this->$_integrator;
+		}
+
 		$classname = wp_get_theme()->stylesheet;
 		$classname = __NAMESPACE__ . '\\inc\\' . preg_replace( '/ /', '', ucwords( preg_replace( '/[-_]/', ' ', $classname ) ) ) . 'WooIntegrator';
 
@@ -124,10 +127,12 @@ class Main{
 		}
 
 		if( class_exists( $classname ) ){
-			return new $classname;
+			$this->$_integrator = new $classname;
 		}else{
-			return $this;
+			$this->$_integrator = $this;
 		}
+
+		return $this->$_integrator;
 	}
 
 	public function theme_setup(){
