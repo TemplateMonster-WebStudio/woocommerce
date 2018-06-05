@@ -1,5 +1,5 @@
-# wp-theme-woocomerce
-Basis for Wordpress theme extension, adds __Woocommerce__ plugin support to any Wordpress theme.
+# woocomerce integrator
+Basis for __Wordpress__ theme extension, adds __Woocommerce__ plugin support to any Wordpress theme.
 
 __Notice!__
 <br><em>Expected you've cloned this into __extensions/__ directory inside your theme directory</em>
