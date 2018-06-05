@@ -115,7 +115,7 @@ class Main{
 	public function get_integrator(){
 
 		$classname = wp_get_theme()->stylesheet;
-		$classname = __NAMESPACE__ . '\\inc\\' . preg_replace( '/ /', '', ucwords( preg_replace( '/[-_]/', ' ', $classname ) ) ) . 'Integrator';
+		$classname = __NAMESPACE__ . '\\inc\\' . preg_replace( '/ /', '', ucwords( preg_replace( '/[-_]/', ' ', $classname ) ) ) . 'WooIntegrator';
 
 		try{
 			spl_autoload_call( $classname );
