@@ -98,6 +98,6 @@ npm run sass-watch
 commands, this requires you to have __node.js__ and __node-sass__ installed. Optionaly you can edit __extensions/woocommerce/assets/css/styles.css__.
 
 ## Check for bugs and gliches
-
++ See [Wiki](https://github.com/Tolumba/woocommerce/wiki) for this repository.
 + If you have Cherry3-theme - use [this repository](#)
 + If you have Cherry5-theme - use [this repository](#)
