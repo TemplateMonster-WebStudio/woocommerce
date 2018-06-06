@@ -113,8 +113,8 @@ class Main{
 
 	public function get_integrator(){
 
-		if( null != $this->$_integrator ){
-			return $this->$_integrator;
+		if( !empty( $this->_integrator ) ){
+			return $this->_integrator;
 		}
 
 		$classname = wp_get_theme()->stylesheet;
@@ -127,12 +127,12 @@ class Main{
 		}
 
 		if( class_exists( $classname ) ){
-			$this->$_integrator = new $classname;
+			$this->_integrator = new $classname;
 		}else{
-			$this->$_integrator = $this;
+			$this->_integrator = $this;
 		}
 
-		return $this->$_integrator;
+		return $this->_integrator;
 	}
 
 	public function theme_setup(){
