@@ -243,6 +243,13 @@ class Main{
 				wp_get_theme()->stylesheet . '-style',
 			);
 		}
+
+		if( defined( 'CURRENT_THEME' ) ){
+			$depends = array(
+				CURRENT_THEME,
+			);
+		}
+
 		$depends = apply_filters( self::PREFIX . '-styles', $depends );
 		
 		wp_register_style(
