@@ -49,7 +49,7 @@ class Main{
 		add_action( 'woocommerce_after_template_part', array( $this, 'loop_shop_wrap_end' ), 999, 4 );
 
 		/** Adding shop sidebar */
-		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+		add_action( 'widgets_init', array( $this->get_integrator(), 'widgets_init' ) );
 
 		/** Quering assets */
 		add_filter( 'woocommerce_enqueue_styles', array( $this, 'woocommerce_enqueue_styles' ) );
