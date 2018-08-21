@@ -4,11 +4,11 @@
 
 $woocommerce:   	#01bea0;
 $green:         	#7ad03a;
-$red:           	#a00;
+$red:           	#aa0000;
 $orange:        	#ffba00;
 $blue:          	#2ea2cc;
 
-$primary:           #01bea0;                                    // Primary color for buttons (alt)
+$primary:           $woocommerce;                               // Primary color for buttons (alt)
 $primarytext:       desaturate(lighten($primary, 50%), 18%);    // Text on primary color bg
 
 $secondary:         desaturate(lighten($primary, 40%), 21%);    // Secondary buttons
