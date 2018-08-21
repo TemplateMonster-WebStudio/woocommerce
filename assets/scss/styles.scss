@@ -1,20 +1,11 @@
 @charset "UTF-8";
 
 /* # Variables:*/
-
-/* ## Colors*/
-
-/* ### Main*/
-$color: #333333;
-$color-hover: #01bea0;
-
-/* ### Inverce*/
-$color-inverce: #ffffff;
-$color-hover-inverce: #01bea0;
+@import 'variables';
 
 /* ### Additional*/
-$color-gray-light: #f5f3f1;
-$color-gray-accent: #e0e1e5;
+$color-gray-light: $contentbg;
+$color-gray-accent: $subtext;
 
 $select-height: 3.125rem;
 
@@ -42,19 +33,19 @@ body{
 				text-transform: none;
 
 				.entry-title{
-					color: $color;
+					color: $secondarytext;
 				}
 
 				.price{
-					color: $color;
+					color: $secondarytext;
 
 					ins,
 					del{
 						display: inline-block;
 					}
 					ins{
-						color: $color-inverce;
-						background-color: $color;
+						color: $primarytext;
+						background-color: $secondarytext;
 					}
 				}
 
@@ -65,12 +56,12 @@ body{
 
 				.tm-woocompare-page-button,
 				.tm-woowishlist-page-button{
-					color: $color-inverce;
-					background-color: $color-hover;
+					color: $secondary;
+					background-color: $primary;
 
 					&:hover{
-						color: $color-inverce;
-						background-color: $color;
+						color: $secondary;
+						background-color: $primarytext;
 					}
 				}
 
@@ -100,7 +91,7 @@ body{
 			}
 
 			.stock{
-				color: $color-hover;
+				color: $primary;
 			}
 
 			.related{
@@ -112,85 +103,112 @@ body{
 			}
 
 			form.cart{
+				font-size: 1rem;
 
-				.button{
-					color: $color-inverce;
-					background-color: $color-hover;
-					line-height: 24px;
-					padding: 0.75em 1.25em 0.875em;
+				.reset_variations {
+					background-color: $primary;
+					padding: 0.6em .8em 0.75em;
+					text-transform: uppercase;
+					text-decoration: none;
+					color: $secondary;
+					float: right;
+					line-height: 1em;
 
 					&:hover{
-						color: $color-inverce;
-						background-color: $color;
+						color: $secondary;
+						background-color: $secondarytext;
 					}
 				}
 
-				div.quantity{
-					margin-right: 28px;
-				}
+				table.variations{
+					tr{
+						
+						td.label{
+							padding: .25rem .5rem;
+							color: $secondarytext;
+							background-color: $secondary;
+							margin-top: 1px;
 
-				.reset_variations {
-					background-color: $color-hover;
-					padding: .2em .5em;
-					margin-top: .2em;
-					text-transform: uppercase;
-					text-decoration: none;
-					color: $color-inverce;
-					float: right;
-					line-height: 1.4;
-
-					&:hover{
-						color: $color-inverce;
-						background-color: $color-hover-inverce;
+							label{
+								margin: 0;
+								padding: 0;
+								text-shadow: none;
+							}
+						}
 					}
 				}
 			}
 		}
+		form.woocommerce-cart-form,
+		form.cart{
+			font-size: 1rem;
 
-		.quantity{
-			position: relative;
-			margin-right: 28px;
-
-			input.qty{
-				appearance: none;
-				-moz-appearance: textfield;
-				-webkit-appearance: none;
-				width: 5rem;
-			}
-
-			.tm-qty-plus,
-			.tm-qty-minus {
-				position: absolute;
-				display: block;
-				height: 24px;
-				width: 24px;
-				background: $color-inverce;
-				border: 1px solid $color-gray-accent;
-				margin-left: 2px;
-				left: 100%;
-				text-align: center;
-				line-height: 24px;
-				font-family: 'FontAwesome';
+			.button{
+				color: $primarytext;
+				background-color: $primary;
+				font-size: inherit;
+				line-height: 1em;
+				padding: 0.6em 1.2em 0.75em;
+				text-transform: uppercase;
 
 				&:hover{
-					color: $color-hover;
-					background: $color-gray-light;
+					color: $secondarytext;
+					background-color: $primarytext;
 				}
 			}
 
-			.tm-qty-plus{
-				top: 0;
+			div.quantity{
+				position: relative;
+				min-height: 2rem;
+				margin-right: calc( 1em + 6px );
+				max-width: 5rem;
 
-				&:before{
-					content: '+';
+				input.qty{
+					appearance: none;
+					-moz-appearance: textfield;
+					-webkit-appearance: none;
+					width: 5rem;
+					min-height: calc( 2rem + 6px );
+					margin: 0;
+					box-sizing: border-box;
+					line-height: 1em;
+					height: auto;
 				}
-			}
 
-			.tm-qty-minus {
-				bottom: 0;
+				.tm-qty-plus,
+				.tm-qty-minus {
+					position: absolute;
+					display: block;
+					height: 1rem;
+					width: 1rem;
+					background: $secondary;
+					border: 1px solid $color-gray-accent;
+					margin-left: 2px;
+					left: 100%;
+					text-align: center;
+					line-height: 1rem;
+					font-family: 'FontAwesome';
 
-				&:before{
-					content: '-';
+					&:hover{
+						color: $primary;
+						background: $color-gray-light;
+					}
+				}
+
+				.tm-qty-plus{
+					top: 0;
+
+					&:before{
+						content: '+';
+					}
+				}
+
+				.tm-qty-minus {
+					bottom: 0;
+
+					&:before{
+						content: '-';
+					}
 				}
 			}
 		}
@@ -212,15 +230,17 @@ body{
 				}
 
 				.price{
-					color: $color;
+					color: $primary;
 
 					ins,
 					del{
 						display: inline-block;
 					}
 					ins{
-						color: $color-inverce;
-						background-color: $color;
+						color: $secondarytext;
+						background-color: $secondary;
+						padding: .25em .5em;
+						text-decoration: none;
 					}
 				}
 
@@ -251,8 +271,8 @@ body{
 					width: auto;
 					line-height: 1;
 					border-radius: 0.2em;
-					color: $color-inverce;
-					background: $color;
+					color: $secondarytext;
+					background: $orange;
 				}
 			}
 		}
@@ -269,8 +289,8 @@ body{
 			width: auto;
 			line-height: 1;
 			border-radius: 0.2em;
-			color: $color-inverce;
-			background: $color;
+			color: $secondarytext;
+			background: $orange;
 		}
 
 		.tm-woowishlist-wrapper{
@@ -285,7 +305,7 @@ body{
 				}
 
 				.stock{
-					color: $color-hover;
+					color: $primary;
 				}
 			}
 		}
@@ -293,27 +313,28 @@ body{
 		.button{
 			width: auto;
 			height: auto;
-			color: $color-inverce;
-			background-color: $color-hover-inverce;
+			color: $primarytext;
+			background-color: $primary;
 			display: block;
-			padding: .618em 1em;
+			padding: .8em 1em .85em;
 			line-height: 1em;
 			border-radius: 0;
+			text-transform: uppercase;
 
 			&:focus,
 			&:active,
 			&:hover{
-				color: $color-inverce;
-				background-color: $color;
+				color: $secondarytext;
+				background-color: $primarytext;
 			}
 
 			&.loading{
-				background-color: $color-hover-inverce;
+				background-color: $secondarytext;
 
 				&:focus,
 				&:active,
 				&:hover{
-					background-color: $color;
+					background-color: $primarytext;
 				}
 			}
 
@@ -321,28 +342,30 @@ body{
 			&.tm-woocompare-button{
 				position: relative;
 				background: transparent;
-				color: $color;
+				color: $primarytext;
 				float: left;
 
 				&:after{
 					margin-left: 0;
 					font-family: 'FontAwesome';
+					display: block;
 				}
 
 				.text{
 					opacity: 0;
+					overflow: visible;
 					visibility: hidden;
 					position: absolute;
-					-webkit-transform: translateX(-50%);
-					transform: translateX(-50%);
-					background-color: $color;
-					color: $color-inverce;
-					overflow: visible;
-					padding: 4px;
-					padding: .2rem;
+					white-space: nowrap;
+					padding: .25em .5em;
+					color: $primarytext;
+					background-color: $secondarytext;
 					top: -36px;
 					top: -2.2rem;
 					left: 50%;
+					font-size: .7rem;
+					-webkit-transform: translateX(-50%);
+					transform: translateX(-50%);
 					-webkit-transition: opacity ease-in-out .4s;
 					transition: opacity ease-in-out .4s;
 
@@ -355,7 +378,7 @@ body{
 						display: block;
 						position: absolute;
 						border: 8px solid transparent;
-						border-top-color: $color;
+						border-top-color: $secondarytext;
 						-webkit-transform: translateX(-50%);
 						transform: translateX(-50%);
 					}
@@ -448,7 +471,7 @@ body{
 			.price_slider_wrapper{
 
 				.ui-widget-content{
-					background-color: $color;
+					background-color: $primarytext;
 				}
 			}
 
@@ -456,7 +479,7 @@ body{
 
 				.ui-slider-range,
 				.ui-slider-handle{
-					background-color: $color-hover;
+					background-color: $primary;
 				}
 			}
 		}
@@ -487,7 +510,7 @@ body{
 
 			.select2-results__option--highlighted[aria-selected], 
 			.select2-results__option--highlighted[data-selected] {
-				background-color: $color-hover;
+				background-color: $primary;
 			}
 		}
 
@@ -587,6 +610,11 @@ body{
 			}
 		}
 
+		#respond input#submit.submit{
+			color: inherit;
+			background-color: transparent;
+		}
+
 		#respond input#submit.disabled,
 		#respond input#submit:disabled,
 		#respond input#submit:disabled[disabled],
@@ -599,11 +627,12 @@ body{
 		input.button.disabled,
 		input.button:disabled,
 		input.button:disabled[disabled]{
-			color: $color-inverce;
+			color: $secondary;
+			padding: .6em 1em .75em;
 
 			&:hover{
-				color: $color-inverce;
-				background-color: $color;
+				color: $secondary;
+				background-color: $primarytext;
 			}
 		}
 
@@ -615,7 +644,7 @@ body{
 
 					&:disabled,
 					&:disabled[disabled]{
-						color: $color-inverce;
+						color: $secondary;
 					}
 				}
 			}
@@ -625,12 +654,12 @@ body{
 		button.button.alt,
 		input.button.alt,
 		a.button.alt{
-			background-color: $color-hover;
-			color: $color-inverce;
+			background-color: $primary;
+			color: $secondary;
 
 			&:hover{
-				background-color: $color;
-				color: $color-inverce;
+				background-color: $primarytext;
+				color: $secondary;
 			}
 		}
 
@@ -668,18 +697,18 @@ body{
 }
 
 .woocommerce-info{
-	border-color: $color-hover;
+	border-color: $primary;
 
 	&:before{
-		color: $color-hover;
+		color: $primary;
 	}
 }
 
 .woocommerce-message{
-	border-color: $color-hover;
+	border-color: $primary;
 	
 	&:before{
-		color: $color-hover;
+		color: $primary;
 	}
 }
 
@@ -717,6 +746,7 @@ body{
 			list-style: none;
 			display: inline-block;
 			margin-top: 0;
+			color: $primarytext;
 
 			+ .menu-item{
 
@@ -725,17 +755,18 @@ body{
 					margin: 0 .5em;
 					position: relative;
 					top: -.1em;
+					color: inherit;
 				}
 			}
 
 			a{
-				color: $color;
+				color: $primarytext;
 			}
 
 			&.current-menu-item,
 			&:hover{
 				a{
-					color: $color-hover;
+					color: $primary;
 				}
 			}
 		}
@@ -769,7 +800,7 @@ body{
 			font-size: 1rem;
 			line-height: 1em;
 			font-weight: 400;
-			color: $color;
+			color: $primarytext;
 			text-transform: none;
 
 			span{
@@ -780,7 +811,7 @@ body{
 		a:hover,
 		a:focus,
 		.wpml-ls-current-language:hover > a{
-			color: $color-hover;
+			color: $primary;
 		}
 
 		.wpml-ls-flag {
@@ -796,6 +827,106 @@ body{
 		.js-wpml-ls-sub-menu,
 		.wcml-cs-submenu{
 			display: block;
+		}
+	}
+
+	&.widget_product_search{
+		.woocommerce-product-search{
+			box-sizing: border-box;
+			margin-bottom: 0;
+			font-size: 0;
+
+			input,
+			button{
+				margin: 0;
+				height: auto;
+				padding: 4px 6px;
+				display: inline-block;
+				line-height: 35px;
+				box-sizing: border-box;
+				vertical-align: middle;
+
+				@media (max-width: 992px) and ( min-width: 768px ){
+					display: block;
+				}
+			}
+
+			input{
+				&.search-field{
+					font-size: 1rem;
+					width: 100%;
+					max-width: 60%;
+
+					@media (max-width: 992px) and ( min-width: 768px ) {
+						max-width: none;
+					}
+				}
+			}
+
+			button{
+				&[type="submit"]{
+					font: 20px/35px 'Lato', sans-serif;
+					background: $primary;
+					text-transform: uppercase;
+					font-weight: bold;
+					border:none;
+					width: 100%;
+					max-width: 29%;
+					margin-left: 1%;
+					color: $primarytext;
+					transition: all ease-in-out .3s;
+					border: 1px solid $primary;
+
+					@media (max-width: 992px) and ( min-width: 768px ){
+						max-width: none;
+					}
+
+					&:hover{
+						color: $secondarytext;
+						background: $secondary;
+						border-color: $secondary;
+					}
+				}
+			}
+		}
+	}
+
+	.woocommerce-pagination{
+		ul.page-numbers{
+			border: none;
+
+			li{
+				border: none;
+				margin-left: 0;
+
+				+ li{
+					margin-left: .1rem;
+				}
+
+				a,
+				span{
+					color: $primarytext;
+					background-color: $primary;
+				}
+
+				.current{
+					color: $secondarytext;
+					background-color: $secondary;
+				}
+
+				&:hover{
+					a,
+					span{
+						color: $primary;
+						background-color: $primarytext;
+					}
+					
+					.current{
+						color: $secondarytext;
+						background-color: $secondary;
+					}
+				}
+			}
 		}
 	}
 }
@@ -816,6 +947,7 @@ body{
 	.navbar-toggle{
 		font-size: 0;
 		cursor: pointer;
+		color: $primary;
 
 		i{
 			font-size: 16px;
@@ -823,7 +955,7 @@ body{
 			line-height: 1rem;
 
 			&.count{
-				color: $color-inverce;
+				color: $secondarytext;
 				font-weight: 700;
 				margin-left: .5em;
 				position: relative;
@@ -833,7 +965,7 @@ body{
 					content: '';
 					display: block;
 					position: absolute;
-					background-color: $color;
+					background-color: $primary;
 					-webkit-transform: translate( -50%, -50% );
 					transform: translate( -50%, -50% );
 					height: 1.6em;
@@ -854,11 +986,13 @@ body{
 		}
 		
 		&:hover{
+			color: $secondarytext;
 
 			.count{
+				color: $secondary;
 
 				&:before{
-					background-color: $color-hover;
+					background-color: $secondarytext;
 				}
 			}
 		}
@@ -907,13 +1041,13 @@ body{
 		position: relative;
 
 		> span{
-			background: $color-inverce;
-			color: $color;
+			background: $secondary;
+			color: $primarytext;
 		}
 		&:hover{
 			> span{
-				background: $color-hover;
-				color: $color-inverce;
+				background: $primary;
+				color: $secondary;
 			}
 		}
 	}
@@ -930,7 +1064,7 @@ body{
 			visibility: visible;
 			transition: transform .4s ease-in-out;
 			transform-origin: top left 0;
-			background: $color-inverce;
+			background: $secondary;
 			min-width: 200px;
 			padding: .2em;
 
@@ -946,7 +1080,7 @@ body{
 					display: none;
 				}
 				> a {
-					color: $color;
+					color: $primarytext;
 					white-space: nowrap;
 					overflow: hidden;
 					text-overflow: ellipsis;
@@ -958,7 +1092,7 @@ body{
 					background-color: $color-gray-accent;
 
 					> a{
-						color: $color-hover;
+						color: $primary;
 					}
 				}
 			}
