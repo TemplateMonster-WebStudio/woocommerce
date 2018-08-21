@@ -139,10 +139,33 @@ body{
 				}
 			}
 		}
+			
+		div.product{
+			form.cart{
+				div.quantity{
+					margin-right: calc( 1em + 6px );
+				}
+
+				.button{
+					color: $primarytext;
+					background-color: $primary;
+					font-size: inherit;
+					line-height: 1em;
+					padding: 0.6em 1.2em 0.8em;
+					text-transform: uppercase;
+
+					&:hover{
+						color: $secondarytext;
+						background-color: $primarytext;
+					}
+				}
+			}
+		}
+
 		form.woocommerce-cart-form,
 		form.cart{
 			font-size: 1rem;
-
+			
 			.button{
 				color: $primarytext;
 				background-color: $primary;
@@ -160,7 +183,6 @@ body{
 			div.quantity{
 				position: relative;
 				min-height: 2rem;
-				margin-right: calc( 1em + 6px );
 				max-width: 5rem;
 
 				input.qty{
@@ -924,6 +946,50 @@ body{
 					.current{
 						color: $secondarytext;
 						background-color: $secondary;
+					}
+				}
+			}
+		}
+	}
+
+	.tablesaw-bar{
+		.tablesaw-advance{
+			a.tablesaw-nav-btn{
+				background: $primary;
+				text-shadow: none;
+				border: none;
+
+				&.left,
+				&.right{
+					&:before{
+						background: none;
+					}
+					&.disabled{
+						background: $primarytext;
+					}
+				}
+
+				&.left{
+					&:before{
+						border-right-color: $secondarytext;
+					}
+
+					&.disabled{
+						&:before{
+							border-right-color: $secondary;
+						}
+					}
+				}
+
+				&.right{
+					&:before{
+						border-left-color: $secondarytext;
+					}
+
+					&.disabled{
+						&:before{
+							border-left-color: $secondary;
+						}
 					}
 				}
 			}
