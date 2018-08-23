@@ -10,11 +10,13 @@ namespace extensions\woocommerce\inc {
 			/**
 			 * Titles format override
 			 */
-			/*remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+			remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
 			add_action( 'woocommerce_shop_loop_item_title', array( $this, 'woocommerce_template_loop_product_title' ), 10 );
 
 			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
-			add_action( 'woocommerce_single_product_summary', array( $this, 'woocommerce_template_single_title'), 5 );*/
+			add_action( 'woocommerce_single_product_summary', array( $this, 'woocommerce_template_single_title'), 5 );
+
+			add_filter( 'tm_woowishlist_column_class', array( $this, 'tm_woowishlist_column_class' ), 10, 2 );
 		}
 
 		public function output_content_wrapper_start(){ ?>
@@ -50,10 +52,10 @@ namespace extensions\woocommerce\inc {
 				'name'          => esc_html__( 'Shop Sidebar', 'woo-wrapper' ),
 				'id'            => 'sidebar-shop',
 				'description'   => esc_html__( 'Appears on the Shop related pages', 'woo-wrapper' ),
-				'before_widget' => '<section id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</section>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h3>',
+				'after_title'   => '</h3>',
 			) );
 		}
 
@@ -64,7 +66,7 @@ namespace extensions\woocommerce\inc {
 
 		/**
 		 * Title format in products loop
-		 * @return [type] [description]
+		 * @return null
 		 */
 		public function woocommerce_template_loop_product_title(){
 			\the_title( '<h4 class="woocommerce-loop-product__title">', '</h4>' );
@@ -72,10 +74,14 @@ namespace extensions\woocommerce\inc {
 
 		/**
 		 * Title format in single product page
-		 * @return [type] [description]
+		 * @return null
 		 */
 		public function woocommerce_template_single_title(){
 			\the_title( '<h3 class="product_title entry-title">', '</h3>' );
+		}
+
+		public function tm_woowishlist_column_class( $class, $cols ){
+			return 'span' . round( 12 / $cols );
 		}
 	}
 }
