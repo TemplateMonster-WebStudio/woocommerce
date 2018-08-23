@@ -14,7 +14,7 @@ body.page-template-woocommerce div.product .entry-summary, body.woocommerce-page
 }
 
 body.page-template-woocommerce div.product .entry-summary .entry-title, body.woocommerce-page div.product .entry-summary .entry-title, body.woocommerce div.product .entry-summary .entry-title {
-  color: #13463e;
+  color: #99f2e4;
 }
 
 body.page-template-woocommerce div.product .entry-summary .price, body.woocommerce-page div.product .entry-summary .price, body.woocommerce div.product .entry-summary .price {
@@ -29,8 +29,10 @@ body.woocommerce div.product .entry-summary .price del {
 }
 
 body.page-template-woocommerce div.product .entry-summary .price ins, body.woocommerce-page div.product .entry-summary .price ins, body.woocommerce div.product .entry-summary .price ins {
-  color: #c5f9f1;
-  background-color: #13463e;
+  color: #13463e;
+  background-color: #99f2e4;
+  padding: .25em .5em;
+  text-decoration: none;
 }
 
 body.page-template-woocommerce div.product .entry-summary .woocommerce-product-details__short-description, body.woocommerce-page div.product .entry-summary .woocommerce-product-details__short-description, body.woocommerce div.product .entry-summary .woocommerce-product-details__short-description {
@@ -102,13 +104,13 @@ body.page-template-woocommerce div.product form.cart, body.woocommerce-page div.
 }
 
 body.page-template-woocommerce div.product form.cart .reset_variations, body.woocommerce-page div.product form.cart .reset_variations, body.woocommerce div.product form.cart .reset_variations {
-  background-color: #01bea0;
-  padding: 0.6em .8em 0.75em;
+  float: right;
   text-transform: uppercase;
   text-decoration: none;
-  color: #99f2e4;
-  float: right;
   line-height: 1em;
+  padding: 0.6em .8em 0.75em;
+  color: #c5f9f1;
+  background-color: #01bea0;
 }
 
 body.page-template-woocommerce div.product form.cart .reset_variations:hover, body.woocommerce-page div.product form.cart .reset_variations:hover, body.woocommerce div.product form.cart .reset_variations:hover {
@@ -144,7 +146,7 @@ body.page-template-woocommerce div.product form.cart .button, body.woocommerce-p
 
 body.page-template-woocommerce div.product form.cart .button:hover, body.woocommerce-page div.product form.cart .button:hover, body.woocommerce div.product form.cart .button:hover {
   color: #13463e;
-  background-color: #c5f9f1;
+  background-color: #99f2e4;
 }
 
 body.page-template-woocommerce form.woocommerce-cart-form,
@@ -171,7 +173,7 @@ body.page-template-woocommerce form.cart .button:hover, body.woocommerce-page fo
 body.woocommerce-page form.cart .button:hover, body.woocommerce form.woocommerce-cart-form .button:hover,
 body.woocommerce form.cart .button:hover {
   color: #13463e;
-  background-color: #c5f9f1;
+  background-color: #99f2e4;
 }
 
 body.page-template-woocommerce form.woocommerce-cart-form div.quantity,
@@ -212,8 +214,9 @@ body.woocommerce form.cart div.quantity .tm-qty-minus {
   display: block;
   height: 1rem;
   width: 1rem;
-  background: #99f2e4;
-  border: 1px solid #777;
+  background: #01bea0;
+  color: #c5f9f1;
+  border: 1px solid #13463e;
   margin-left: 2px;
   left: 100%;
   text-align: center;
@@ -232,7 +235,7 @@ body.woocommerce form.woocommerce-cart-form div.quantity .tm-qty-minus:hover,
 body.woocommerce form.cart div.quantity .tm-qty-plus:hover,
 body.woocommerce form.cart div.quantity .tm-qty-minus:hover {
   color: #01bea0;
-  background: #fff;
+  background: #99f2e4;
 }
 
 body.page-template-woocommerce form.woocommerce-cart-form div.quantity .tm-qty-plus,
@@ -363,7 +366,7 @@ body.page-template-woocommerce .button, body.woocommerce-page .button, body.wooc
 
 body.page-template-woocommerce .button:focus, body.page-template-woocommerce .button:active, body.page-template-woocommerce .button:hover, body.woocommerce-page .button:focus, body.woocommerce-page .button:active, body.woocommerce-page .button:hover, body.woocommerce .button:focus, body.woocommerce .button:active, body.woocommerce .button:hover {
   color: #13463e;
-  background-color: #c5f9f1;
+  background-color: #99f2e4;
 }
 
 body.page-template-woocommerce .button.loading, body.woocommerce-page .button.loading, body.woocommerce .button.loading {
@@ -662,7 +665,7 @@ body.woocommerce button.button:disabled[disabled],
 body.woocommerce input.button.disabled,
 body.woocommerce input.button:disabled,
 body.woocommerce input.button:disabled[disabled] {
-  color: #99f2e4;
+  color: #c5f9f1;
   padding: .6em 1em .75em;
 }
 
@@ -700,12 +703,12 @@ body.woocommerce button.button:disabled[disabled]:hover,
 body.woocommerce input.button.disabled:hover,
 body.woocommerce input.button:disabled:hover,
 body.woocommerce input.button:disabled[disabled]:hover {
-  color: #99f2e4;
-  background-color: #c5f9f1;
+  color: #13463e;
+  background-color: #99f2e4;
 }
 
 body.page-template-woocommerce inputbutton .button:disabled, body.page-template-woocommerce inputbutton .button:disabled[disabled], body.woocommerce-page inputbutton .button:disabled, body.woocommerce-page inputbutton .button:disabled[disabled], body.woocommerce inputbutton .button:disabled, body.woocommerce inputbutton .button:disabled[disabled] {
-  color: #99f2e4;
+  color: #c5f9f1;
 }
 
 body.page-template-woocommerce #respond input#submit.alt,
@@ -718,8 +721,8 @@ body.woocommerce-page a.button.alt, body.woocommerce #respond input#submit.alt,
 body.woocommerce button.button.alt,
 body.woocommerce input.button.alt,
 body.woocommerce a.button.alt {
+  color: #c5f9f1;
   background-color: #01bea0;
-  color: #99f2e4;
 }
 
 body.page-template-woocommerce #respond input#submit.alt:hover,
@@ -732,8 +735,8 @@ body.woocommerce-page a.button.alt:hover, body.woocommerce #respond input#submit
 body.woocommerce button.button.alt:hover,
 body.woocommerce input.button.alt:hover,
 body.woocommerce a.button.alt:hover {
-  background-color: #c5f9f1;
-  color: #99f2e4;
+  color: #13463e;
+  background-color: #99f2e4;
 }
 
 body.page-template-woocommerce #content table.cart td.actions .button, body.woocommerce-page #content table.cart td.actions .button, body.woocommerce #content table.cart td.actions .button {
@@ -807,7 +810,7 @@ body .select2-dropdown {
   list-style: none;
   display: inline-block;
   margin-top: 0;
-  color: #c5f9f1;
+  color: #99f2e4;
 }
 
 .shop-menu-container .shop-menu .menu-item + .menu-item:before {
@@ -819,7 +822,7 @@ body .select2-dropdown {
 }
 
 .shop-menu-container .shop-menu .menu-item a {
-  color: #c5f9f1;
+  color: #99f2e4;
 }
 
 .shop-menu-container .shop-menu .menu-item.current-menu-item a, .shop-menu-container .shop-menu .menu-item:hover a {
@@ -1042,7 +1045,7 @@ body .select2-dropdown {
 }
 
 .cart-navbar-wrapper .navbar-toggle i.count {
-  color: #13463e;
+  color: #c5f9f1;
   font-weight: 700;
   margin-left: .5em;
   position: relative;

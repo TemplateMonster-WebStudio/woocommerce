@@ -296,7 +296,7 @@ body{
 					width: auto;
 					line-height: 1;
 					border-radius: 0.2em;
-					color: $secondary;
+					color: $secondarytext;
 					background: $orange;
 				}
 			}
@@ -314,7 +314,7 @@ body{
 			width: auto;
 			line-height: 1;
 			border-radius: 0.2em;
-			color: $secondary;
+			color: $secondarytext;
 			background: $orange;
 		}
 
@@ -935,8 +935,8 @@ body{
 				}
 
 				.current{
-					color: $secondary;
-					background-color: $secondarytext;
+					color: $secondarytext;
+					background-color: $secondary;
 				}
 
 				&:hover{
