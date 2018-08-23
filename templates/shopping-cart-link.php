@@ -11,7 +11,7 @@
 	$discount = $cart->get_total_discount();
 	*/
 
-	$text_before = '<span class="button-text-wrap"><i class="fa icon-shopping-cart"></i> ';
+	$text_before = '<span class="button-text-wrap"><i class="fa fa-shopping-cart"></i> ';
 	$text_after = " <i class=\"count\">{$items_count}</i></span>";
 
 	$button_text = sprintf( __( '%sCart%s', 'woo-wrapper' ), $text_before, $text_after );

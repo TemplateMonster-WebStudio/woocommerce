@@ -2,5 +2,4 @@ node-modules/**
 inc/**
 !inc/class-abstract-woo-integrator.php
 !inc/class-sample-woo-integrator.php
-!inc/class-sample-cherry3-woo-integrator.php
 !inc/class-tgm-plugin-activation.php
