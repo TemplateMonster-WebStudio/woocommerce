@@ -1,3 +1,5 @@
+\.**
+**/*.map
 node-modules/**
 inc/**
 !inc/class-abstract-woo-integrator.php
