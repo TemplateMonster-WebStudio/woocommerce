@@ -101,4 +101,4 @@ commands, this requires you to have __node.js__ and __node-sass__ installed. Opt
 + See [Wiki](https://github.com/Tolumba/woocommerce/wiki) for this repository.
 + If you have Cherry3-theme - use [this repository](https://github.com/Tolumba/woocommerce/tree/cherry3)
 + If you have Cherry4-theme - use [this repository](https://github.com/Tolumba/woocommerce/tree/cherry4)
-+ If you have Cherry5-theme - use [this repository](#)
++ If you have Cherry5-theme - use [this repository](https://github.com/Tolumba/woocommerce/tree/cherry5)
