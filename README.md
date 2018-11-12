@@ -15,7 +15,7 @@ __Notice!__
 + In __extensions/woocommerce/inc/__ folder create "integrator" class file using folowing naming pattern:
 	<br>__class-%theme-name%-woo-integrator.php__ - for a file;
 	<br>Where %theme-name% - is basically your theme's directory name
-	<br>And the Class name - __ThemeNameWooIntegrator__.
+	<br>And the Class name - __%ThemeName%WooIntegrator__.
 	<br>You can copy a __class-sample-woo-integrator.php__
 	<br>The new Class should extend __AbstractWooIntegrator__ and will be autoloaded
 	
@@ -100,4 +100,5 @@ commands, this requires you to have __node.js__ and __node-sass__ installed. Opt
 ## Check for bugs and gliches
 + See [Wiki](https://github.com/Tolumba/woocommerce/wiki) for this repository.
 + If you have Cherry3-theme - use [this repository](https://github.com/Tolumba/woocommerce/tree/cherry3)
++ If you have Cherry4-theme - use [this repository](https://github.com/Tolumba/woocommerce/tree/cherry4)
 + If you have Cherry5-theme - use [this repository](#)
