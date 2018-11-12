@@ -73,7 +73,7 @@ body{
 				.tm-woowishlist-page-button{
 					margin-top: .5em;
 					display: inline-block;
-					float: left;
+					/* float: left; */
 				}
 
 				.tm-woowishlist-button,
@@ -1184,5 +1184,5 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media only screen and ( max-width: 767px ){
-@import "woocommerce-smallscreen"
+	@import "woocommerce-smallscreen";
 }

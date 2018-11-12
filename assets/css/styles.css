@@ -68,7 +68,7 @@ body.woocommerce div.product .entry-summary .tm-woowishlist-button,
 body.woocommerce div.product .entry-summary .tm-woowishlist-page-button {
   margin-top: .5em;
   display: inline-block;
-  float: left;
+  /* float: left; */
 }
 
 body.page-template-woocommerce div.product .entry-summary .tm-woowishlist-button.in_compare, body.page-template-woocommerce div.product .entry-summary .tm-woowishlist-button.in_wishlist, body.page-template-woocommerce div.product .entry-summary .tm-woowishlist-button.added,
