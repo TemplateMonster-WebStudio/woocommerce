@@ -4,4 +4,5 @@ node-modules/**
 inc/**
 !inc/class-abstract-woo-integrator.php
 !inc/class-sample-woo-integrator.php
+!inc/class-non-cherry-woo-integrator.php
 !inc/class-tgm-plugin-activation.php
